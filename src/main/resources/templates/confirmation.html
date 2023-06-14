@@ -8,7 +8,7 @@
 <h1>Thank you for your order!</h1>
 
 <h2>Your Order Details:</h2>
-<p>Order ID: <span th:text="${order.id}"></span></p>
+<p>Order ID: <span th:text="${(order.id)-1}"></span></p>
 
 <h3>Items:</h3>
 <ul>
@@ -19,7 +19,7 @@
 </ul>
 
 <p>Total Price: <span th:text="${order.totalPrice}"></span></p>
-<p>Status: <span th:text="${order.status}"></span></p>
+<!--<p>Status: <span th:text="${order.status}"></span></p>-->
 
 <a href="/">Back to Home</a>
 </body>

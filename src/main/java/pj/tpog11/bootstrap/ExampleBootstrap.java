@@ -32,44 +32,61 @@ public
     private void initData(){
 
         Product product1 = new Product();
-        product1.setName("Apple iPhone 12");
-        product1.setPrice(999.99);
-        product1.setDescription("Apple iPhone 12 with 64GB Memory");
+
+        product1.setName("Pride and Prejudice");
+        product1.setPrice(15.99);
+        product1.setDescription("One of Jane Austen's most popular novels, Pride and Prejudice.");
         productRepository.save(product1);
 
         Product product2 = new Product();
-        product2.setName("Samsung Galaxy S21");
-        product2.setPrice(899.99);
-        product2.setDescription("Samsung Galaxy S21 with 128GB Memory");
+        product2.setName("The Master and Margarita");
+        product2.setPrice(20.99);
+        product2.setDescription("A classic novel by Russian author Mikhail Bulgakov.");
         productRepository.save(product2);
+
+        Product product3 = new Product();
+        product3.setName("To Kill a Mockingbird");
+        product3.setPrice(12.99);
+        product3.setDescription("A classic novel by Harper Lee, set in the racial turmoil of the American South in the 1930s.");
+        productRepository.save(product3);
+
+        Product product4 = new Product();
+        product4.setName("1984");
+        product4.setPrice(14.99);
+        product4.setDescription("A classic dystopian novel by George Orwell.");
+        productRepository.save(product4);
+
+        Product product5 = new Product();
+        product5.setName("Moby-Dick");
+        product5.setPrice(19.99);
+        product5.setDescription("A classic novel by Herman Melville about the quest to capture the great white whale.");
+        productRepository.save(product5);
+
 
         User1 user1 = new User1();
         user1.setName("John Doe");
         userRepository.save(user1);
 
-        CartItem cartItem1 = new CartItem();
-        cartItem1.setProduct(product1);
-        cartItem1.setQuantity(2);
+//        User1 user1 = new User1();
+//        user1.setName("John Doe" + System.currentTimeMillis());
+//        userRepository.save(user1);
 
-        CartItem cartItem2 = new CartItem();
-        cartItem2.setProduct(product2);
-        cartItem2.setQuantity(1);
+//        CartItem cartItem1 = new CartItem();
+//        cartItem1.setProduct(product1);
+//        cartItem1.setQuantity(2);
+//
+//        CartItem cartItem2 = new CartItem();
+//        cartItem2.setProduct(product2);
+//        cartItem2.setQuantity(1);
 
-        Order1 order = new Order1();
-        order.setUser(user1);
-        List<CartItem> items = new ArrayList<>();
-        items.add(cartItem1);
-        items.add(cartItem2);
-        order.setItems(items);
-        order.setTotalPrice(product1.getPrice() * cartItem1.getQuantity() + product2.getPrice() * cartItem2.getQuantity());
+//        Order1 order = new Order1();
+//        order.setUser(user1);
+//        order.setItems(new ArrayList<>());
+//        order.setTotalPrice(0);
 
-        cartItem1.setOrder(order); // Set the Order before saving
-        cartItem2.setOrder(order); // Set the Order before saving
+//        orderRepository.save(order);
 
-        cartItemRepository.save(cartItem1); // Save CartItem after setting Order
-        cartItemRepository.save(cartItem2); // Save CartItem after setting Order
 
-        orderRepository.save(order); // Save Order after saving CartItems
 
 
 

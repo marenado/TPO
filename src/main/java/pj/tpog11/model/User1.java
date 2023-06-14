@@ -13,7 +13,7 @@ public class User1 {
     private String name;
 
 
-    // Constructors, getters, and setters
+
 
     public User1() {
     }
@@ -37,7 +37,7 @@ public class User1 {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Order1> orders;
 
-    // getters and setters for orders
+
     public List<Order1> getOrders() {
         return orders;
     }

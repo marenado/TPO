@@ -4,11 +4,31 @@
     <meta charset="UTF-8">
     <title>Home</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 15px;
+        }
+        th, td {
+            padding: 20px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-<h1>Welcome to our store!</h1>
+<h1>Welcome to our bookstore!</h1>
 
-<h2>Products:</h2>
+<h2>Books:</h2>
 <table>
     <tr>
         <th>Product</th>
@@ -25,7 +45,9 @@
     </tr>
 </table>
 
-<a href="/cart">View Cart</a>
+<div style="text-align: center;">
+    <a href="/cart">View Cart</a>
+</div>
 
 <script>
     $(".add-to-cart-btn").click(function(e) {
@@ -38,7 +60,6 @@
             $("#cart-total-items").text(data.totalItems);
             $("#cart-total-price").text(data.totalPrice);
         });
-
     });
 </script>
 

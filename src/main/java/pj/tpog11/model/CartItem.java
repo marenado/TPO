@@ -1,6 +1,9 @@
 package pj.tpog11.model;
 
 import jakarta.persistence.*;
+import pj.tpog11.repositories.UserRepository;
+
+import java.util.List;
 
 @Entity
 public class CartItem {
@@ -8,8 +11,9 @@ public class CartItem {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.PERSIST) // Add cascade type here
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Order1 order;
+
 
     @ManyToOne
     private Product product;
@@ -26,8 +30,14 @@ public class CartItem {
 
     public CartItem(Product product) {
         this.product = product;
-        this.quantity = 1; // Set a default quantity or adjust it based on your requirements
+        this.quantity = 1;
     }
+
+    public void removeItem() {
+        this.order.getItems().remove(this);
+        this.order = null;
+    }
+
 
     public Long getId() {
         return id;

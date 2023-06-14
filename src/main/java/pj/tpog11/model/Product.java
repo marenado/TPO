@@ -14,7 +14,7 @@ public class Product {
     private String name;
     private double price;
     private String description;
-    private String category; // Add the category property
+    private String category;
 
     public Product() {
     }
@@ -26,7 +26,6 @@ public class Product {
         this.category = category;
     }
 
-    // Getters and setters for all fields
 
     public Long getId() {
         return id;

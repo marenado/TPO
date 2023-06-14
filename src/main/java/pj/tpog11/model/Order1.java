@@ -18,16 +18,17 @@ public class Order1 {
     private LocalDateTime orderDateTime;
     private double totalPrice;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CartItem> cartItems;
 
     public Order1() {
         this.orderDateTime = LocalDateTime.now();
         this.cartItems = new ArrayList<>();
-        this.totalPrice = 0.0;  // Initialize totalPrice to 0
+        this.totalPrice = 0.0;
     }
 
-    // Other constructors, getters, setters, etc.
+
+
 
     public void addItem(Product product, int quantity) {
         CartItem cartItem = new CartItem(product, quantity);
@@ -85,8 +86,15 @@ public class Order1 {
 
     public void removeItem(CartItem cartItem) {
         cartItems.remove(cartItem);
-        updateTotalPrice();  // Update the total price after removing an item
+        updateTotalPrice();
     }
+
+    public void clearItems() {
+        this.cartItems.clear();
+        this.totalPrice = 0.0;
+    }
+
+
 
     private void updateTotalPrice() {
         double total = 0.0;
@@ -96,5 +104,5 @@ public class Order1 {
         totalPrice = total;
     }
 
-    // Other methods related to order operations
+
 }

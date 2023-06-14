@@ -5,15 +5,15 @@
   <title>Cart</title>
 </head>
 <body>
-<h1>Your Cart:</h1>
+<h1>&nbsp;&nbsp;Your Cart:</h1>
 
 <table>
   <tr>
-    <th>Product</th>
-    <th>Quantity</th>
-    <th>Price</th>
-    <th>Total Price</th>
-    <th>Actions</th>
+    <th>&nbsp;&nbsp;Product</th>
+    <th>&nbsp;&nbsp;Quantity</th>
+    <th>&nbsp;&nbsp;Price</th>
+    <th>&nbsp;&nbsp;Total Price</th>
+    <th>&nbsp;&nbsp;Actions</th>
   </tr>
   <tr th:each="item : ${cartItems}">
     <td th:text="${item.product.name}"></td>
@@ -21,21 +21,22 @@
     <td th:text="${#numbers.formatDecimal(item.product.price, 1, 2)}"></td>
     <td th:text="${#numbers.formatDecimal(item.quantity * item.product.price, 1, 2)}"></td>
     <td>
-      <a th:href="@{/cart/add/{id}(id=${item.product.id})}">Add one more</a> |
-      <a th:href="@{/cart/reduce/{id}(id=${item.product.id})}">Reduce by one</a> |
-      <a th:href="@{/cart/remove/{id}(id=${item.product.id})}">Remove</a>
+      <a th:href="@{/cart/increase/{id}(id=${item.product.id})}">&nbsp;&nbsp;Increase by one</a> &nbsp;|
+      <a th:href="@{/cart/reduce/{id}(id=${item.product.id})}">&nbsp;&nbsp;Reduce by one</a> &nbsp;|
+      <a th:href="@{/cart/remove/{id}(id=${item.product.id})}">&nbsp;&nbsp;Remove</a>
     </td>
   </tr>
 </table>
-
+<br>
 <h2>Total: <span th:text="${#numbers.formatDecimal(total, 1, 2)}"></span></h2>
-
-
+<br>
 <form th:action="@{/order}" method="post">
   <button type="submit">Checkout</button>
 </form>
-
+<br>
 <a href="/">Back to Home Page</a>
+<div th:if="${errorMessage}" th:text="${errorMessage}" class="error-message"></div>
+
 
 </body>
 </html>
