@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Order Confirmation</title>
+</head>
+<body>
+<h1>Thank you for your order!</h1>
+
+<h2>Your Order Details:</h2>
+<p>Order ID: <span th:text="${order.id}"></span></p>
+
+<h3>Items:</h3>
+<ul>
+  <li th:each="item : ${order.items}">
+    <span th:text="${item.product.name}"></span> -
+    <span th:text="${item.quantity}"></span>
+  </li>
+</ul>
+
+<p>Total Price: <span th:text="${order.totalPrice}"></span></p>
+<p>Status: <span th:text="${order.status}"></span></p>
+
+<a href="/">Back to Home</a>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Cart</title>
+</head>
+<body>
+<h1>Your Cart:</h1>
+
+<table>
+  <tr>
+    <th>Product</th>
+    <th>Quantity</th>
+    <th>Price</th>
+    <th>Total Price</th>
+    <th>Actions</th>
+  </tr>
+  <tr th:each="item : ${cartItems}">
+    <td th:text="${item.product.name}"></td>
+    <td th:text="${item.quantity}"></td>
+    <td th:text="${#numbers.formatDecimal(item.product.price, 1, 2)}"></td>
+    <td th:text="${#numbers.formatDecimal(item.quantity * item.product.price, 1, 2)}"></td>
+    <td>
+      <a th:href="@{/cart/add/{id}(id=${item.product.id})}">Add one more</a> |
+      <a th:href="@{/cart/reduce/{id}(id=${item.product.id})}">Reduce by one</a> |
+      <a th:href="@{/cart/remove/{id}(id=${item.product.id})}">Remove</a>
+    </td>
+  </tr>
+</table>
+
+<h2>Total: <span th:text="${#numbers.formatDecimal(total, 1, 2)}"></span></h2>
+
+
+<form th:action="@{/order}" method="post">
+  <button type="submit">Checkout</button>
+</form>
+
+<a href="/">Back to Home Page</a>
+
+</body>
+</html>

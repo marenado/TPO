@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<h1>Welcome to our store!</h1>
+
+<h2>Products:</h2>
+<table>
+    <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Actions</th>
+    </tr>
+    <tr th:each="product : ${products}">
+        <td th:text="${product.name}"></td>
+        <td th:text="${#numbers.formatDecimal(product.price, 1, 2)}"></td>
+        <td>
+            <a th:href="@{/product/{id}(id=${product.id})}">Details</a> |
+            <button class="add-to-cart-btn" th:data-product-id="${product.id}">Add to cart</button>
+        </td>
+    </tr>
+</table>
+
+<a href="/cart">View Cart</a>
+
+<script>
+    $(".add-to-cart-btn").click(function(e) {
+        e.preventDefault();
+
+        var productId = $(this).data('product-id');
+
+        $.get("/home/add/" + productId, function(data) {
+            // data is the response from the server, update the front end accordingly
+            $("#cart-total-items").text(data.totalItems);
+            $("#cart-total-price").text(data.totalPrice);
+        });
+
+    });
+</script>
+
+</body>
+</html>
